@@ -1,0 +1,29 @@
+body{
+    background: #ad7a3e;
+}
+
+h1, h3, h4 {
+    text-align: center;
+}
+.container{
+    background: #bcf8cb;
+    width: 70%;
+    margin: auto;
+}
+
+#fishlist{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+
+.fish{
+    background: #f5f7e9;
+    width: 300px;
+    margin: 1em; 
+    padding: 1em;
+}
+
+.price{
+    text-align: right;
+}
