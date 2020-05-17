@@ -2,9 +2,19 @@ body{
     background: #ad7a3e;
 }
 
-h1, h3, h4 {
+header{
+    display: flex;
+    justify-content: space-between;
+}
+
+h1, h4 {
     text-align: center;
 }
+
+h3 {
+    display: inline;
+}
+
 .container{
     background: #bcf8cb;
     width: 70%;
@@ -26,4 +36,14 @@ h1, h3, h4 {
 
 .price{
     text-align: right;
+}
+
+.collapsed{
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.05s ease-out;
+}
+
+img.toggle{
+    height: 20px;
 }
