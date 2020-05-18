@@ -15,7 +15,7 @@ const catchFish = () => {
 const displayFish = (fishies) => {
     fishies.forEach(fish => {
         console.log(fish);
-        const fishName = (fish.name["name-en"]);
+        const fishName = properCase(fish.name["name-en"]);
         const fishPrice = (fish.price);
         const fishPhrase = (fish["catch-phrase"]);
         const fishMuseum = (fish["museum-phrase"]);
@@ -46,6 +46,20 @@ const expandFish = e => {
             ? e.target.src = './images/arrow-expand.png' 
             : e.target.src = './images/arrow-collapse.png';
     }
+}
+
+function properCase(name){
+    const isSpace = name.indexOf(' ');
+    let properName = name[0].toUpperCase();
+    if(isSpace === -1){                                                     // If no spaces, adds the rest of the name
+        properName += name.slice(1);
+    }else{                                                                  // If space, capitalize the second word
+        properName += name.slice(1, isSpace + 1)                
+        properName += name[isSpace + 1].toUpperCase();
+        properName += name.slice(isSpace + 2);
+    }
+    return properName;
+    
 }
 
 catchFish();
