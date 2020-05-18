@@ -1,30 +1,47 @@
-const types = document.querySelector('#types');
 const fishList = document.querySelector('#fishlist');
+const sortForm = document.querySelector('#sortform');
+const type = document.querySelector('#type');
 const endpoint = './fish.json';
+let fishArray = [];
 
 const catchFish = () => {
     fetch(endpoint)
         .then(data => data.json())
         .then(results => {
-            const fishArray = Object.keys(results)              // Takes the keys of the object
+            console.log()
+            fishArray = Object.keys(results)              // Takes the keys of the object
                 .map(key => results[key])                       // and maps them into an array with the details
-            displayFish(fishArray)                              // Passes the array into the display function
-        })   
+                displayFish(sortFish())                              // Passes the array into the display function
+            })   
+}
+
+function changeType(e){
+    if(e.target.textContent === 'Fish'){
+        type.children[0].classList.add('active');
+        type.children[1].classList.remove('active');
+        catchFish();
+    }else if(e.target.textContent === 'Bugs'){
+        type.children[0].classList.remove('active');
+        type.children[1].classList.add('active');
+        console.log('Bug time!')
+    }
 }
 
 const displayFish = (fishies) => {
+    console.log(fishies)
+    console.dir(sortForm);
     fishies.forEach(fish => {
-        console.log(fish);
+        const { price, 
+                ["catch-phrase"]: fishPhrase, 
+                ["museum-phrase"]: fishMuseum} 
+                = fish
         const fishName = properCase(fish.name["name-en"]);
-        const fishPrice = (fish.price);
-        const fishPhrase = (fish["catch-phrase"]);
-        const fishMuseum = (fish["museum-phrase"]);
         const newFish = document.createElement('div');
         newFish.innerHTML = `
             <div>
                 <header>
                     <h3>${fishName}</h3>
-                    <h3 class="price"> ${fishPrice} bells </h3>
+                    <h3 class="price"> ${price} bells </h3>
                     <img class="toggle" src="./images/arrow-expand.png">
                 </header>
                 <main class="collapsed">
@@ -62,6 +79,14 @@ function properCase(name){
     
 }
 
-catchFish();
+function sortFish(){
+    console.log(sortForm.value);
+    return fishArray.sort((a, b) => a.price - b.price)
+}
 
+catchFish();
+sortFish(fishArray);
+
+sortForm.addEventListener('click', sortFish);
 fishList.addEventListener('click', expandFish);
+type.addEventListener('click', changeType);

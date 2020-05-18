@@ -9,9 +9,24 @@
 <body>
     <h1>ACNH Vanilla</h1>
     <div class="container">
-        <h2 id="types">Fish Types</h3>
-        <div id="fishlist">
-        </div>
+        <header>
+            <nav>
+                <ul id="type">
+                    <li id="fishtab" class="active">Fish</li>
+                    <li id="bugtab">Bugs</li>
+                </ul>
+            </nav>
+            <div>
+                Sort by:
+                <form id="sortform">
+                    <input type="radio" name="sort" id="name" value="name" checked>
+                    <label for="name">Name</label>
+                    <input type="radio" name="sort" id="price" value="price">  
+                    <label for="price">Price</label>
+                </form>
+            </div>
+        </header>
+        <div id="fishlist"></div>
         <script src="app.js"></script>
     </div>
 </body>

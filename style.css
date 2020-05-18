@@ -21,6 +21,18 @@ h3 {
     margin: auto;
 }
 
+nav ul{
+    list-style: none;
+}
+
+nav li{
+    display: inline;
+}
+
+.active{
+    color:red;
+}
+
 #fishlist{
     display: flex;
     flex-direction: column;
